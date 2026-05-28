@@ -1,6 +1,5 @@
 import math
 
-
 g = 9.81
 k = 1.38e-23
 T = 300
@@ -9,10 +8,8 @@ m = 4.65e-26
 n0 = 1.0
 
 
-
 def density(h):
     return n0 * math.exp(-m * g * h / (k * T))
-
 
 
 def euler_method(h_max, dh):
@@ -41,17 +38,15 @@ print()
 
 heights = [0, 1000, 2000, 5000, 10000]
 
-
 euler_data = euler_method(10000, 1000)
 
 print("Высота | Аналитика | Эйлер | Погрешность")
-print("------------------------------------------")
+print()
 
 for h in heights:
     n_exact = density(h)
     n_euler = euler_data[h]
 
-    
     error = abs(n_exact - n_euler) / n_exact
 
     print(h, "|", round(n_exact, 5), "|", round(n_euler, 5), "|", round(error, 5))
@@ -60,6 +55,3 @@ print("\nДополнительная информация:")
 print("Аналитика: n(h) = n0 * exp(-mgh / kT)")
 print("Численно: dn/dh = -(mg/kT)*n (метод Эйлера)")
 print("Погрешность: |n_точн - n_числ| / n_точн")
-
-
-
